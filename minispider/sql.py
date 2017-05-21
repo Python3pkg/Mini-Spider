@@ -133,7 +133,7 @@ class MiniSpiderSQL:
                     temp = 'New'
                 elif item[1] >= 2:
                     temp = 'Exception'
-                print('[%s:%s]%s' % (index, temp, item[0]))
+                print(('[%s:%s]%s' % (index, temp, item[0])))
 
     def export_txt(self, table_name, file_name):
         """Export all the URL from table_name to a txt file."""
@@ -146,7 +146,7 @@ class MiniSpiderSQL:
             result = cur.fetchall()
 
         # Add '\n'.
-        result = list(map(lambda x: x[0] + '\n', result))
+        result = list([x[0] + '\n' for x in result])
 
         # Export txt file.
         with open(os.path.join(os.getcwd(), file_name), mode='w') as f:
@@ -158,7 +158,7 @@ class MiniSpiderSQL:
             result = f.readlines()
 
         # May have problem here.MARK
-        result = tuple(map(lambda x: x[:-1], result))
+        result = tuple([x[:-1] for x in result])
 
         if table_name == 'next_url':
             self.insert_next_url(result)

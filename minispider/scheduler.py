@@ -85,12 +85,12 @@ class MiniSpider:
     def _display_result(self):
         tag_header = ''
         for index, item in enumerate(self.result):
-            print('[%s]:' % index)
+            print(('[%s]:' % index))
             not_print_flag = 1
             for i, j in enumerate(item):
                 if i >= self.display_number:
                     if not_print_flag:
-                        print('%s is not displayed' % (len(item) - self.display_number))
+                        print(('%s is not displayed' % (len(item) - self.display_number)))
                         not_print_flag = 0
                     continue
                 # Print tag url.
@@ -98,7 +98,7 @@ class MiniSpider:
                     if not tag_header:
                         tag_header = re.match('((?:[a-z]{0,10}\s*=\s*"))', j).group(0)
                     j = self.host + j.replace(tag_header, '')[0:-1]
-                print('---(%s)%s' % (i, j))
+                print(('---(%s)%s' % (i, j)))
 
     def _pattern_make_http(self):
         for i in self.search_list:

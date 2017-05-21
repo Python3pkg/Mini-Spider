@@ -72,7 +72,7 @@ class Downloader:
     def get_server_info(self):
         req = urllib.request.Request(self.url)
         if self.headers:
-            for k, v in self.headers.items():
+            for k, v in list(self.headers.items()):
                 req.add_header(k, v)
 
         # Add header to tell the server where to start.
@@ -94,7 +94,7 @@ class Downloader:
         self.get_server_info()
         # If file is completed, pass.
         if self._check_file():
-            print('%s is already completed!' % self.filename)
+            print(('%s is already completed!' % self.filename))
             return True
         # If server support resume function.
         if self._support_resume() and self.info['Content-Length'] in (2, '2'):
@@ -193,7 +193,7 @@ class Downloader:
         if self.terminal_mode:
             sys.stdout.write('                                                                        \r')
             sys.stdout.flush()
-        print('%s completed' % self.filename)
+        print(('%s completed' % self.filename))
 
     def _support_resume(self):
         if self.server_code == 0:
@@ -234,7 +234,7 @@ class Downloader:
     def _download(self, begin, end):
         req = urllib.request.Request(self.url)
         if self.headers:
-            for k, v in self.headers.items():
+            for k, v in list(self.headers.items()):
                 req.add_header(k, v)
         byte_range = 'bytes=' + str(begin) + '-' + str(end - 1)
         req.add_header('Range', byte_range)

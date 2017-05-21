@@ -96,8 +96,8 @@ def main():
 
         # Print pattern.
         if len(pattern) == 2:
-            print('Host:' + pattern[1])
-            print(pattern[0])
+            print(('Host:' + pattern[1]))
+            print((pattern[0]))
         else:
             print(pattern)
 
